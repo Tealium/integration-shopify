@@ -5,18 +5,16 @@ Tealium Shopify Integration
 
 Summary
 -------
-
-For Tealium iQ users with Shopify, use this integration to add the necessary Tealium specific code to your site. It provides a UDO (Universal Data Object) and loads the necessary Tealium assets on each page of your site. The integration takes the form of a theme customization.
+With this integration, you can customize your Shopify theme to use Tealium. This code provides a Universal Data Object (UDO) and loads the necessary Tealium assets on each page of your site. This integration takes the form of a theme customization.
 
 ---------------------------
 
 Setup Instructions
 ------------------
 
-You're basically just going to customize your existing Shopify theme.
+#### 1. Settings
 
-1. ###### Settings
-Copy the following JSON object into the JSON array contained in the Config/settings_schema.json file of your Shopify them. This will enable Tealium specific settings for your theme.
+Copy the following JSON object into the JSONarray contained in theConfig/settings_schema.json file of your Shopify theme. This will enable the Tealium-specific settings for your theme.
 
   ```json
   {
@@ -54,13 +52,15 @@ Copy the following JSON object into the JSON array contained in the Config/setti
     ]
   }
   ```
-  Now you can edit your Tealium specific settings in the "General Settigs" tab when customizing your theme.
+  Now you can edit your Tealium-specific settings in the **General Settings** tab when customizing your theme.
 
-2. ###### Snippets
-Drop the files from the "Snippets" folder of this repo into the "Snippets" folder of your Shopify theme. These files contain the actual UDO implementations for the various page types.
+#### 2. Snippets
 
-3. ###### Templates
-You will need to include the correct snippet that implements the relevant data layer on each page. This means going to each template, or possibly section for certain pages such as the index ("home") page, and including the snippet. For example, the product.liquid template file in the default "Debut" theme that Shopify provides would look like the following, where the "product_udo" snippet has been added at the top of the file.
+Drop the files from the **Snippets** folder of this GitHub repository into the **Snippets** folder of your Shopify theme. These files contain the actual UDO implementations for the various page types.
+
+#### 3. Templates
+
+On each page, you will need to include the correct snippet corresponding to the data layer of that page. To do that, go to the page's template, or possibly the section for certain pages such as the index ("home") page, and insert the relevant snippet. For example, the **product.liquid** template file in the default **Debut** theme that Shopify provides would look like the following, where the **product_udo** snippet has been added at the top of the file.
 
   ```
 
@@ -84,13 +84,15 @@ You will need to include the correct snippet that implements the relevant data l
   </script>
   ```
 
-4. ###### Checkout
-The checkout pages work differently than the rest of the pages. To implement Tealium on the order status page, you must add some code to the "Additional scripts" box of your order processing settings. According to the [Shopify documentation](https://help.shopify.com/themes/customization/order-status), you access it in the following way:
+#### 4. Checkout
 
-  > 1. From your Shopify admin, click Settings, and then click Checkout.
+The checkout pages work differently than the rest of the pages. Unlike other pages, the checkout pages don't have access to the admin Settings, so you must reconfigure your Tealium account information. To do that, define the settings in the **Additional scripts** box of the **Order processing** section. According to the [Shopify documentation](https://help.shopify.com/themes/customization/order-status), you can access it in the following way:
+
+
+  > 1. From your Shopify admin, click Settings, then click Checkout.
   > 2. Find the Order processing section. Near the bottom of this section you will find Additional content & scripts.
 
-  And then you'll need to add the following code:
+  And then you'll need to add the following code. Before you begin, make sure to set `tealium_enabled` to `true`, and to set the `tealium_account`, `tealium_profile`, and `tealium_environment` variables to match what you configure in the settings.
 
   ```
   {% assign tealium_enabled = false %}
@@ -167,5 +169,3 @@ The checkout pages work differently than the rest of the pages. To implement Tea
   <!-- Please configure your Tealium account information for the order confirmation page. -->
   {% endif %}
   ```
-
-  Make sure to set "tealium_enabled" to true, and to set the "tealium_account", "tealium_profile", and "tealium_environment" variables to match what you configure in the settings. Unfortunately pages in the checkout don't have access to settings, so it's necessary to configure them again just for the order status page.
