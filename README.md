@@ -14,7 +14,7 @@ Setup Instructions
 
 #### 1. Settings
 
-Copy the following JSON object into the JSONarray contained in theConfig/settings_schema.json file of your Shopify theme. This will enable the Tealium-specific settings for your theme.
+Copy the following JSON object into the JSON array contained in the Config/settings_schema.json file of your Shopify theme. This will enable the Tealium-specific settings for your theme.
 
   ```json
   {
