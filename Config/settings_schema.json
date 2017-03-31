@@ -1,0 +1,34 @@
+  {
+    "name": "Tealium",
+    "settings": [
+      {
+        "type": "text",
+        "id": "tealium_account",
+        "label": "Account",
+        "info": "Name of your acount"
+      },
+      {
+        "type": "text",
+        "id": "tealium_profile",
+        "label": "Profile",
+        "default": "main",
+        "info": "Which profile to load your tags from",
+        "placeholder": "main"
+      },
+      {
+        "type": "text",
+        "id": "tealium_environment",
+        "label": "Environment",
+        "default": "prod",
+        "info": "Which environment to load your tags from",
+        "placeholder": "prod"
+      },
+      {
+        "type": "checkbox",
+        "id": "tealium_enabled",
+        "label": "Enable",
+        "default": false,
+        "info": "Check to enable Tealium"
+      }
+    ]
+  }

@@ -1,0 +1,13 @@
+{% if settings.tealium_enabled %}
+
+<script type="text/javascript">
+  var utag_data = {
+    "site_section": "list_collections",
+    {% include 'global_udo_vars' %}
+    "page_type": "list_collections"
+  }
+</script>
+
+{% include 'utag' %}
+
+{% endif %}

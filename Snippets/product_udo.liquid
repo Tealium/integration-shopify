@@ -1,0 +1,26 @@
+{% if settings.tealium_enabled %}
+
+<script type="text/javascript">
+  var utag_data = {
+    "site_section": "product",
+    "product_id" : ["{{ product.id }}"],
+    "product_name" : ["{{ product.title }}"],
+    "product_brand" : ["{{ product.vendor }}"],
+
+    {% for variant in product.variants %}
+      {% if variant.price == product.price_min %}
+        "product_price" : ["{{ variant.price | money_without_currency }}"],
+        "product_sku" : ["{{ variant.sku }}"],
+
+      {% endif %}
+    {% endfor %}
+
+    {% include 'global_udo_vars' %}
+
+    "page_type": "product"
+  }
+</script>
+
+{% include 'utag' %}
+
+{% endif %}

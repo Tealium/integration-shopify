@@ -1,0 +1,15 @@
+{% if settings.tealium_enabled %}
+
+<script type="text/javascript">
+  var utag_data = {
+    "site_section": "search",
+    "search_results": "{{ search.results_count }}",
+    "search_keyword": "{{ search.terms }}",
+    {% include 'global_udo_vars' %}
+    "page_type": "search"
+  }
+</script>
+
+{% include 'utag' %}
+
+{% endif %}

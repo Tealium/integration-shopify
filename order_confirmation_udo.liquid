@@ -1,0 +1,73 @@
+{% assign tealium_enabled = false %}
+{% assign tealium_account = "" %}
+{% assign tealium_profile = "" %}
+{% assign tealium_environment = "" %}
+
+{% if tealium_enabled and tealium_account != "" and tealium_profile != "" and tealium_environment != "" %}
+<script type="text/javascript">
+  var utag_data = {
+    "site_section": "order",
+    "product_id": [
+    {% for line_item in checkout.line_items %}
+      "{{ line_item.product_id }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+    ],
+    "product_quantity": [
+    {% for line_item in checkout.line_items %}
+      "{{ line_item.quantity }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+    ],
+    "product_price": [
+    {% for line_item in checkout.line_items %}
+      "{{ line_item.price | money_without_currency }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+    ],
+    "product_name": [
+    {% for line_item in checkout.line_items %}
+      "{{ line_item.title }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+    ],
+    "product_sku": [
+    {% for line_item in checkout.line_items %}
+      "{{ line_item.sku }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+    ],
+
+    "page_name": "{{ page_title }}",
+    "language_code": "{{ shop.locale }}",
+
+    {% if customer %}
+      "customer_logged_in": "true",
+      "customer_id": "{{ customer.id }}",
+      "customer_email": "{{ customer.email }}",
+      "customer_first_name": "{{ customer.first_name }}",
+      "customer_last_name": "{{ customer.last_name }}",
+
+      {% if customer.default_address %}
+        "country_code": "{{ customer.default_address.country_code }}",
+      {% endif %}
+
+    {% else %}
+      "customer_loggedin": "false",
+    {% endif %}
+
+    {% if cart %}
+      "cart_total_items": "{{ cart.item_count }}",
+      "cart_total_value": "{{ cart.total_price | money_without_currency }}",
+    {% endif %}
+
+    "page_type": "order"
+  }
+</script>
+
+<!-- Loading script asynchronously -->
+<script type="text/javascript">
+    (function(a,b,c,d){
+    a='//tags.tiqcdn.com/utag/{{ settings.tealium_account }}/{{ settings.tealium_profile }}/{{ settings.tealium_environment }}/utag.js';
+    b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
+    a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
+    })();
+</script>
+{% else %}
+<!-- Please configure your Tealium account information for the order confirmation page. -->
+{% endif %}

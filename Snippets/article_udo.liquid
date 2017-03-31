@@ -1,0 +1,13 @@
+{% if settings.tealium_enabled %}
+
+<script type="text/javascript">
+  var utag_data = {
+    "site_section": "article",
+    {% include 'global_udo_vars' %}
+    "page_type": "article"
+  }
+</script>
+
+{% include 'utag' %}
+
+{% endif %}

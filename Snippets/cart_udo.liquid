@@ -1,0 +1,40 @@
+{% if settings.tealium_enabled %}
+
+<script type="text/javascript">
+  var utag_data = {
+    "site_section": "cart",
+    "product_id": [
+    {% for line_item in cart.items %}
+      "{{ line_item.product_id }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+    ],
+    "product_quantity": [
+    {% for line_item in cart.items %}
+      "{{ line_item.quantity }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+    ],
+    "product_price": [
+    {% for line_item in cart.items %}
+      "{{ line_item.price | money_without_currency }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+    ],
+    "product_name": [
+    {% for line_item in cart.items %}
+      "{{ line_item.title }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+    ],
+    "product_sku": [
+    {% for line_item in cart.items %}
+      "{{ line_item.sku }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+    ],
+
+    {% include 'global_udo_vars' %}
+
+    "page_type": "cart"
+  }
+</script>
+
+{% include 'utag' %}
+
+{% endif %}

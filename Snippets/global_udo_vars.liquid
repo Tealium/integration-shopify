@@ -1,0 +1,22 @@
+"page_name": "{{ page_title }}",
+"language_code": "{{ shop.locale }}",
+
+{% if customer %}
+  "customer_logged_in": "true",
+  "customer_id": "{{ customer.id }}",
+  "customer_email": "{{ customer.email }}",
+  "customer_first_name": "{{ customer.first_name }}",
+  "customer_last_name": "{{ customer.last_name }}",
+
+  {% if customer.default_address %}
+    "country_code": "{{ customer.default_address.country_code }}",
+  {% endif %}
+
+{% else %}
+  "customer_loggedin": "false",
+{% endif %}
+
+{% if cart %}
+  "cart_total_items": "{{ cart.item_count }}",
+  "cart_total_value": "{{ cart.total_price | money_without_currency }}",
+{% endif %}
