@@ -1,8 +1,6 @@
 Tealium Shopify Integration
 ===========================
 
----------------------------
-
 Summary
 -------
 With this integration, you can customize your Shopify theme to use Tealium. This code provides a Universal Data Object (UDO) and loads the necessary Tealium assets on each page of your site. This integration takes the form of a theme customization.
@@ -14,7 +12,7 @@ Setup Instructions
 
 #### 1. Settings
 
-Copy the following JSON object into the JSON array contained in the Config/settings_schema.json file of your Shopify theme. This will enable the Tealium-specific settings for your theme.
+Copy the following JSON object into the JSON array contained in the [Config/settings_schema.json](https://help.shopify.com/themes/development/theme-editor/settings-schema) file of your Shopify theme. This will enable the Tealium-specific settings for your theme.
 
   ```json
   {
@@ -58,9 +56,11 @@ Copy the following JSON object into the JSON array contained in the Config/setti
 
 Drop the files from the **Snippets** folder of this GitHub repository into the **Snippets** folder of your Shopify theme. These files contain the actual UDO implementations for the various page types.
 
+See [https://help.shopify.com/themes/development/templates#snippets](https://help.shopify.com/themes/development/templates#snippets) for information on theme snippets.
+
 #### 3. Templates
 
-On each page, you will need to include the correct snippet corresponding to the data layer of that page. To do that, go to the page's template, or possibly the section for certain pages such as the index ("home") page, and insert the relevant snippet. For example, the **product.liquid** template file in the default **Debut** theme that Shopify provides would look like the following, where the **product_udo** snippet has been added at the top of the file.
+On each page, you will need to include the correct snippet corresponding to the data layer of that page. To do that, go to the page's [template](https://help.shopify.com/themes/development/templates), or possibly the section for certain pages such as the index ("home") page, and insert the relevant snippet. For example, the **product.liquid** template file in the default **Debut** theme that Shopify provides would look like the following, where the **product_udo** snippet has been added at the top of the file.
 
   ```
 
@@ -169,3 +169,23 @@ The checkout pages work differently than the rest of the pages. Unlike other pag
   <!-- Please configure your Tealium account information for the order confirmation page. -->
   {% endif %}
   ```
+
+----------------------------
+
+## Change Log
+
+- 1.0.1
+    - Fixed misspelled variable name in the "global_udo_vars" snippet. "customer_loggedin" (wrong) => "customer_logged_in" (right)
+- 1.0.0 Initial Release
+    - All snippets and configuration required to customize a Shopify theme to integrate Tealium
+    - Instructions for customizing a theme
+
+----------------------------
+
+## License
+
+Use of this software is subject to the terms and conditions of the license agreement contained in the file titled "LICENSE.txt".  Please read the license before downloading or using any of the files contained in this repository. By downloading or using any of these files, you are agreeing to be bound by and comply with the license agreement.
+
+
+---
+Copyright (C) 2012-2017, Tealium Inc.
