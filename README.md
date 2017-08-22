@@ -7,7 +7,7 @@ With this integration, you can customize your Shopify theme to use Tealium. This
 
 The code snippet for the order status page will also appear on the thank you page of the checkout. It is therefore the code that provides the UDO for conversion tracking. Because the order status page can be revisited after the order is placed, care must be taken not to track conversions twice. This logic can be configured in Tealium iQ.
 
-Only Shopify Plus customers have access to the checkout.liquid file, which is needed to load TiQ throughout the checkout funnel. We currently don't support the checkout funnel, however you can do so by implementing your own checkout.liquid following the patterns used on other pages.
+Only Shopify Plus customers have access to the checkout.liquid file, which is needed to load utag.js throughout the checkout funnel. This integration does not currently support the checkout funnel, however you can do so by implementing your own checkout.liquid following the patterns used on other pages.
 
 ---------------------------
 
