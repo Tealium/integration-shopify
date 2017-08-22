@@ -5,6 +5,10 @@ Summary
 -------
 With this integration, you can customize your Shopify theme to use Tealium. This code provides a Universal Data Object (UDO) and loads the necessary Tealium assets on each page of your site. This integration takes the form of a theme customization.
 
+The code snippet for the order status page will also appear on the thank you page of the checkout. It is therefore the code that provides the UDO for conversion tracking. Because the order status page can be revisited after the order is placed, care must be taken not to track conversions twice. This logic can be configured in Tealium iQ.
+
+Only Shopify Plus customers have access to the checkout.liquid file, which is needed to load TiQ throughout the checkout funnel. We currently don't support the checkout funnel, however you can do so by implementing your own checkout.liquid following the patterns used on other pages.
+
 ---------------------------
 
 Setup Instructions
@@ -84,9 +88,9 @@ On each page, you will need to include the correct snippet corresponding to the 
   </script>
   ```
 
-#### 4. Checkout
+#### 4. Order Status
 
-The checkout pages work differently than the rest of the pages. Unlike other pages, the checkout pages don't have access to the admin Settings, so you must reconfigure your Tealium account information. To do that, define the settings in the **Additional scripts** box of the **Order processing** section. According to the [Shopify documentation](https://help.shopify.com/themes/customization/order-status), you can access it in the following way:
+The order status page works differently than the rest of the pages. Unlike other pages, the order status page doesn't have access to the admin Settings, so you must reconfigure your Tealium account information. To do that, define the settings in the **Additional scripts** box of the **Order processing** section. According to the [Shopify documentation](https://help.shopify.com/themes/customization/order-status), you can access it in the following way:
 
 
   > 1. From your Shopify admin, click Settings, then click Checkout.
@@ -174,6 +178,10 @@ The checkout pages work differently than the rest of the pages. Unlike other pag
 
 ## Change Log
 
+- 1.0.2
+    - Updated README to more clearly reflect the capabilities of the integration
+    - Updated order_status snippet to include more data and better variable names
+    - Renamed checkout.liquid to order_status.liquid to better reflect its functionality
 - 1.0.1
     - Fixed misspelled variable name in the "global_udo_vars" snippet. "customer_loggedin" (wrong) => "customer_logged_in" (right)
 - 1.0.0 Initial Release

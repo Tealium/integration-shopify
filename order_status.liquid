@@ -7,6 +7,24 @@
 <script type="text/javascript">
   var utag_data = {
     "site_section": "order",
+    {% if checkout.order_id %}
+        "order_id": "{{ checkout.order_id }}",
+    {% endif %}
+    {% if checkout.subtotal_price %}
+        "order_subtotal": "{{ checkout.subtotal_price | money_without_currency }}",
+    {% endif %}
+    {% if checkout.tax_price %}
+        "order_tax_amount": "{{ checkout.tax_price | money_without_currency }}",
+    {% endif %}
+    {% if checkout.shipping_price %}
+        "order_shipping_amount": "{{ checkout.shipping_price | money_without_currency }}",
+    {% endif %}
+    {% if checkout.discounts_amount %}
+        "order_discount_amount": "{{ checkout.discounts_amount | money_without_currency }}",
+    {% endif %}
+    {% if checkout.total_price %}
+        "order_grand_total": "{{ checkout.total_price | money_without_currency }}",
+    {% endif %}
     "product_id": [
     {% for line_item in checkout.line_items %}
       "{{ line_item.product_id }}"{% unless forloop.last %},{% endunless %}
